@@ -13,7 +13,6 @@ class NewsSourcesInteractor: PresenterToInteractorNewsSourceProtocol {
     weak var presenter: InteractorToPresenterNewsSourceProtocol?
     
     func getNewsArticle(with category: String, source: String) {
-        print("get news article")
         let language: String = "en"
         let parameters: String = "?category=\(category)&language=\(language)"
         let urlTopHeadlines: String = "https://newsapi.org/v2/top-headlines/sources\(parameters)"

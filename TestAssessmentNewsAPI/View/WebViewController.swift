@@ -20,7 +20,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         presenter?.didLoad()
     }
 
-    @objc func closeTapped() {
+    @objc func doneTapped() {
         self.dismiss(animated: true)
     }
     
@@ -41,7 +41,7 @@ extension WebViewController: PresenterToViewWebProtocol {
         let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 44, width: width, height: 44))
         navigationBar.backgroundColor = .white
         let navigationItem = UINavigationItem()
-              let doneBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: nil, action: #selector(closeTapped))
+              let doneBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: nil, action: #selector(doneTapped))
               navigationItem.rightBarButtonItem = doneBtn
               navigationBar.setItems([navigationItem], animated: false)
         webView.frame = CGRect(x: 0, y: 88, width: width, height: self.view.frame.height)

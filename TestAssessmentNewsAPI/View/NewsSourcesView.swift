@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class NewsSourcesVC: UIViewController {
+
+    //MARK: - Properties
     var presenter: ViewToPresenterNewsSourceProtocol?
     var articles: ArticleModel?
     var sources: SourceDetailModel?
@@ -27,6 +29,7 @@ class NewsSourcesVC: UIViewController {
         return label
     }()
 
+    //MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,12 +92,6 @@ extension NewsSourcesVC: PresenterToViewNewsSourceProtocol {
     func showNewsCategory() {
         tableView.reloadData()
     }
-    
-    func deselectRowAt(row: Int) {
-        //
-    }
-    
-    
 }
 
 extension NewsSourcesVC: UITableViewDelegate, UITableViewDataSource {

@@ -24,25 +24,22 @@ class UserRouter: AnyRouter {
     static func start() -> AnyRouter {
         let router = UserRouter()
         
-        //assign VIP
-        var view: AnyView = UserViewController()
+        var view: AnyView = HomeViewController()
         var presenter: AnyPresenter = UserPresenter()
         var interactor: AnyInteractor = UserInteractor()
 
         view.presenter = presenter
-        
         interactor.presenter = presenter
-
         presenter.router = router
         presenter.view = view
         presenter.interactor = interactor
-
         router.entry = view as? EntryPoint
+
         return router
     }
 
     static func createModule() -> UINavigationController {
-        let viewController = UserViewController()
+        let viewController = HomeViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         
         let presenter: AnyPresenter = UserPresenter()
@@ -60,7 +57,7 @@ class UserRouter: AnyRouter {
     func pushToNewsSource(on view: AnyView, with article: ArticleModel) {
         let newsSourceVC = NewsSourceRouter.createModule(with: article)
             
-        let viewController = view as! UserViewController
+        let viewController = view as! HomeViewController
         viewController.navigationController?
             .pushViewController(newsSourceVC, animated: true)
     }
@@ -68,7 +65,7 @@ class UserRouter: AnyRouter {
     func pushToWebView(on view: AnyView, with url: String) {
         let webVC = WebViewRouter.createModule(url: url)
             
-        let viewController = view as! UserViewController
+        let viewController = view as! HomeViewController
         
         webVC.modalPresentationStyle = .fullScreen
         viewController.present(webVC, animated: true)

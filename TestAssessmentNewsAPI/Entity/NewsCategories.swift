@@ -18,8 +18,3 @@ class NewsCategory {
         "Technology"
     ]
 }
-
-enum NewsCategories: String {
-    case business = "business"
-    
-}

@@ -13,11 +13,6 @@ class NewsArticlesInteractor: PresenterToInteractorNewsArticleProtocol {
     weak var presenter: InteractorToPresenterNewsArticleProtocol?
     
     func getNewsArticle(source: SourceDetail, article: ArticleModel) {
-//        print("======================================================")
-//        print(source)
-//        print("======================================================")
-//        print(article)
-//        print("======================================================")
         let articles = article.articles.filter {
             $0.source?.id == source.id
         }

@@ -80,12 +80,6 @@ extension NewsArticlesView: PresenterToViewNewsArticleProtocol {
     func showNewsCategory() {
         tableView.reloadData()
     }
-    
-    func deselectRowAt(row: Int) {
-        //
-    }
-    
-    
 }
 
 extension NewsArticlesView: UITableViewDelegate, UITableViewDataSource {
@@ -98,15 +92,9 @@ extension NewsArticlesView: UITableViewDelegate, UITableViewDataSource {
         return articles.count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        webView = WKWebView()
-//        webView.navigationDelegate = self
 
         let newsUrl = articles[indexPath.row].url!
-//        let url = URL(string: newsUrl)!
-//        webView.load(URLRequest(url: url))
-//        webView.allowsBackForwardNavigationGestures = true
-//
-//        view = webView
+
         presenter?.showWebView(url: newsUrl)
     }
 }

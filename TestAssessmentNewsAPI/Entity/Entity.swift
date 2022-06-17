@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct User: Codable {
-    let name: String
-}
-
 struct Source: Codable {
     let id: String?
     let name: String
@@ -29,12 +25,6 @@ struct Article: Codable {
 
 struct ArticleModel: Codable {
     let articles: [Article]
-}
-
-struct Status: Codable {
-    let status: String
-    let code: String
-    let message: String
 }
 
 struct SourceDetailModel: Codable {

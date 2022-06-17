@@ -26,31 +26,6 @@ class NewsArticlesPresenter: ViewToPresenterNewsArticleProtocol {
     func showWebView(url: String) {
         router?.pushToWebView(on: self.view!, with: url)
     }
-
-//    func
-    
-    func refresh() {
-        //
-    }
-    
-    func numberOfRowsInSection() -> Int {
-        return 1
-    }
-    
-    func textLabelText(indexPath: IndexPath) -> String? {
-        return ""
-    }
-    
-    func didSelectRowAt(index: Int) {
-        //
-    }
-    
-    func deselectRowAt(index: Int) {
-        //
-    }
-    
-    
-    
 }
 
 // MARK: - Outputs to view

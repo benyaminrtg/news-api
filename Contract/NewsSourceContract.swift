@@ -12,10 +12,7 @@ import UIKit
 protocol PresenterToViewNewsSourceProtocol: AnyObject {
     func onFetchSourcesSuccess(sources: SourceDetailModel)
     func onFetchSourcesFailure(error: String)
-
     func showNewsCategory()
-    
-    func deselectRowAt(row: Int)
 }
 
 
@@ -25,22 +22,11 @@ protocol ViewToPresenterNewsSourceProtocol: AnyObject {
     var view: PresenterToViewNewsSourceProtocol? { get set }
     var interactor: PresenterToInteractorNewsSourceProtocol? { get set }
     var router: PresenterToRouterNewsSourceProtocol? { get set }
-    
     var newsCategory: NewsCategory { get set }
     var article: ArticleModel! { get set }
     
     func viewDidLoad()
-    
-    func refresh()
-
     func didSelectSource(source: SourceDetail)
-    
-    func numberOfRowsInSection() -> Int
-    func textLabelText(indexPath: IndexPath) -> String?
-    
-    func didSelectRowAt(index: Int)
-    func deselectRowAt(index: Int)
-
 }
 
 
@@ -48,6 +34,7 @@ protocol ViewToPresenterNewsSourceProtocol: AnyObject {
 protocol PresenterToInteractorNewsSourceProtocol: AnyObject {
     
     var presenter: InteractorToPresenterNewsSourceProtocol? { get set }
+
     func getNewsArticle(with category: String, source: String)
 }
 
@@ -64,6 +51,5 @@ protocol InteractorToPresenterNewsSourceProtocol: AnyObject {
 protocol PresenterToRouterNewsSourceProtocol: AnyObject {
     
     static func createModule(with article: ArticleModel) -> UIViewController
-    
     func pushToNewsArticle(on view: PresenterToViewNewsSourceProtocol, with source: SourceDetail, article: ArticleModel)
 }

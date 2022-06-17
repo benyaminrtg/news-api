@@ -13,10 +13,7 @@ protocol PresenterToViewNewsArticleProtocol: AnyObject {
     func onFetchSourcesSuccess(sources: SourceDetailModel)
     func onFetchSourcesFailure(error: String)
     func onFetchArticleSuccess(articles: [Article])
-
     func showNewsCategory()
-    
-    func deselectRowAt(row: Int)
 }
 
 
@@ -26,7 +23,6 @@ protocol ViewToPresenterNewsArticleProtocol: AnyObject {
     var view: PresenterToViewNewsArticleProtocol? { get set }
     var interactor: PresenterToInteractorNewsArticleProtocol? { get set }
     var router: PresenterToRouterNewsArticleProtocol? { get set }
-    
     var newsCategory: NewsCategory { get set }
     var newsSource: SourceDetail! { get set }
     var article: ArticleModel! { get set }
@@ -34,15 +30,6 @@ protocol ViewToPresenterNewsArticleProtocol: AnyObject {
     
     func viewDidLoad()
     func showWebView(url: String)
-    
-    func refresh()
-    
-    func numberOfRowsInSection() -> Int
-    func textLabelText(indexPath: IndexPath) -> String?
-    
-    func didSelectRowAt(index: Int)
-    func deselectRowAt(index: Int)
-
 }
 
 
@@ -50,6 +37,7 @@ protocol ViewToPresenterNewsArticleProtocol: AnyObject {
 protocol PresenterToInteractorNewsArticleProtocol: AnyObject {
     
     var presenter: InteractorToPresenterNewsArticleProtocol? { get set }
+
     func getNewsArticle(source: SourceDetail, article: ArticleModel)
 }
 

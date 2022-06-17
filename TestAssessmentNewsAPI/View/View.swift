@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import SnapKit
-import WebKit
 
 protocol AnyView {
     var presenter: AnyPresenter? { get set }
@@ -19,12 +18,13 @@ protocol AnyView {
     func didFetchSearchedNews(article: ArticleModel)
 }
 
-class UserViewController: UIViewController, AnyView {
+class HomeViewController: UIViewController, AnyView {
+    
+    //MARK: - Properties
     var presenter: AnyPresenter?
     var articles: ArticleModel?
     var newsCategory = NewsCategory()
     var searchTimer: Timer?
-    var webView: WKWebView!
 
     private let tableView: UITableView = {
         let table = UITableView()
@@ -52,6 +52,7 @@ class UserViewController: UIViewController, AnyView {
         return searchBar
     }()
 
+    //MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,8 +60,6 @@ class UserViewController: UIViewController, AnyView {
         self.navigationItem.title = "News Categories"
         view.addSubview(label)
 
-//        view.addSubview(tableView)
-//        view.addSubview(searchTextField)
         layoutTheView()
         tableView.delegate = self
         tableView.dataSource = self
@@ -71,8 +70,6 @@ class UserViewController: UIViewController, AnyView {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-//        tableView.frame = view.bounds
-        //set navigation title
         label.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
         label.center = view.center
     }
@@ -129,7 +126,7 @@ class UserViewController: UIViewController, AnyView {
     }
 }
 
-extension UserViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = NewsCategory().categories[indexPath.row]
@@ -144,9 +141,8 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension UserViewController: UISearchBarDelegate {
+extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("masuk")
         guard searchText.count >= 3 else { return }
         searchTimer?.invalidate()
         searchTimer =  Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
@@ -155,20 +151,15 @@ extension UserViewController: UISearchBarDelegate {
     }
 
     func searchNews(with text: String) {
-        print("masuk 2")
         self.presenter?.getSearchedNews(text: text)
     }
 }
 
-extension UserViewController: SearchedTableControllerDelegate {
+extension HomeViewController: SearchedTableControllerDelegate {
     func searchedTableController(
         _ searchedTableController: SearchedTableController,
         url: String
     ) {
         presenter?.showWebView(url: url)
     }
-}
-
-extension UserViewController: WKNavigationDelegate {
-    
 }
